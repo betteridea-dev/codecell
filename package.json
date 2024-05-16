@@ -29,7 +29,7 @@
   ],
   "publishConfig": {
     "access": "public",
-    "@betteridea:registry": "https://npm.pkg.github.com"
+    "@betteridea-dev:registry": "https://npm.pkg.github.com"
   },
   "type": "module",
   "scripts": {
