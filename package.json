@@ -2,7 +2,7 @@
   "name": "@betteridea/codecell",
   "repository": {
     "type": "git",
-    "url": "https://github.com/betteridea-dev/ide/tree/main/packages/codecell"
+    "url": "https://github.com/betteridea-dev/codecell.git"
   },
   "keywords": [
     "arweave",
@@ -28,7 +28,8 @@
     "/dist"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "type": "module",
   "scripts": {
