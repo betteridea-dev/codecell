@@ -29,7 +29,7 @@
   ],
   "publishConfig": {
     "access": "public",
-    "registry": "https://registry.npmjs.org/"
+    "@betteridea:registry": "https://npm.pkg.github.com"
   },
   "type": "module",
   "scripts": {
