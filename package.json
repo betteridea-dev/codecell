@@ -1,5 +1,5 @@
 {
-  "name": "@betteridea-dev/codecell",
+  "name": "@betteridea/codecell",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/betteridea-dev/codecell.git"
@@ -28,8 +28,7 @@
     "/dist"
   ],
   "publishConfig": {
-    "access": "public",
-    "@betteridea-dev:registry": "https://npm.pkg.github.com"
+    "access": "public"
   },
   "type": "module",
   "scripts": {
