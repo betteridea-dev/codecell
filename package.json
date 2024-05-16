@@ -2,7 +2,7 @@
   "name": "@betteridea/codecell",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/betteridea-dev/codecell.git"
+    "url": "https://github.com/betteridea-dev/codecell.git"
   },
   "keywords": [
     "arweave",
