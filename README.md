@@ -2,11 +2,54 @@
 
 Now you can integrate our code cells into your webapps and run AO LUA anywhere 🎉
 
+[![npm](https://img.shields.io/badge/@betteridea/codecell-npm-red)](https://www.npmjs.com/package/@betteridea/codecell)
+[![downloads](https://img.shields.io/npm/dt/@betteridea/codecell?color=red)](https://www.npmjs.com/package/@betteridea/codecell)
+[![X Follow](https://img.shields.io/twitter/follow/betteridea-dev)](https://twitter.com/betteridea-dev)
+
+
 ## Installation
 
 ```bash
 npm install @betteridea/codecell
 ```
+
+## API
+
+### `CodeCell`
+
+A react component to render a code cell in your app.
+
+#### Props
+
+- `cellId` - Unique id for the cell
+- `appName` - Unique app name
+- `code` - Initial code for the cell
+- `width` - Width of the cell
+- `height` - Height of the cell
+- `className` - Class names for styling
+- `style` - Inline styles
+- `devMode` - Boolean to enable dev mode
+
+### `setCellCode`
+
+To update the code in a cell, after it has been rendered.
+It is discouraged to update code by changing the `code` prop directly, since it re-renders the iframe, again this is personal preference.
+
+#### Arguments
+
+- `cellId` - Unique id of the cell
+- `code` - Code to set in the cell
+- `devMode` - Boolean to enable dev mode
+
+
+### ~~`runCell`~~ (deprecated due to security reasons)
+
+~~To run the code in a cell, after it has been rendered (optional, since the cell already has a run button)~~
+
+#### ~~Arguments~~
+
+- ~~`cellId` - Unique id of the cell to run~~
+- ~~`devMode` - Boolean to enable dev mode~~
 
 ## Usage
 
@@ -21,7 +64,7 @@ import { CodeCell, runCell } from '@betteridea/codecell';
 />
 ```
 
-To run code from external sources, you can use the `runCell` function.
+~~To run code from external sources, you can use the `runCell` function.~~ (deprecated due to security reasons)
 
 ```javascript
 import { runCell } from '@betteridea/codecell';
@@ -32,27 +75,16 @@ import { runCell } from '@betteridea/codecell';
 runCell("1");
 ```
 
-## API
+To update the cell with a different code snippet, you can use the `setCellCode` function.
 
-### `CodeCell`
+```javascript
+import { setCellCode } from '@betteridea/codecell';
 
-#### Props
+...
 
-- `cellId` - Unique id for the cell
-- `appName` - Unique app name
-- `code` - Initial code for the cell
-- `width` - Width of the cell
-- `height` - Height of the cell
-- `className` - Class names for styling
-- `style` - Inline styles
-- `devMode` - Boolean to enable dev mode
-
-### `runCell`
-
-#### Arguments
-
-- `cellId` - Unique id of the cell to run
-- `devMode` - Boolean to enable dev mode
+// This will update the code in the cell with the id provided
+setCellCode("1", "print('Updated code!')");
+```
 
 ## Developing
 
