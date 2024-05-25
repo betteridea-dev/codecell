@@ -18,7 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         runCell("1", true)
       }}>run</button>
       <input type="text" id="code" onChange={(e) => { onInput(e.target.value) }} />
-      <CodeCell appName="test-cell" cellId="1" devMode />
+      <CodeCell appName="test-cell" cellId="1" devMode onAOProcess={(p) => console.log("got pid from webview", p)} />
     </div>
   </React.StrictMode>,
 )

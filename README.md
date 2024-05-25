@@ -4,7 +4,7 @@ Now you can integrate our code cells into your webapps and run AO LUA anywhere ð
 
 [![npm](https://img.shields.io/badge/@betteridea/codecell-npm-red)](https://www.npmjs.com/package/@betteridea/codecell)
 [![downloads](https://img.shields.io/npm/dt/@betteridea/codecell?color=red)](https://www.npmjs.com/package/@betteridea/codecell)
-[![X Follow](https://img.shields.io/twitter/follow/betteridea-dev)](https://twitter.com/betteridea-dev)
+[![X Follow](https://img.shields.io/twitter/follow/betteridea_dev)](https://twitter.com/betteridea_dev)
 
 
 ## Installation
@@ -15,34 +15,39 @@ npm install @betteridea/codecell
 
 ## API
 
-### `CodeCell`
+### `<CodeCell .../>`
 
 A react component to render a code cell in your app.
 
 #### Props
 
-- `cellId` - Unique id for the cell
-- `appName` - Unique app name
-- `code` - Initial code for the cell
-- `width` - Width of the cell
-- `height` - Height of the cell
-- `className` - Class names for styling
-- `style` - Inline styles
-- `devMode` - Boolean to enable dev mode
+| Prop          | Type                   | Description                                                        |
+| ------------- | ---------------------- | ------------------------------------------------------------------ |
+| `cellId`      | `string`               | Unique id for the cell                                             |
+| `appName`     | `string`               | Unique app name                                                    |
+| `code`        | `string`               | Initial code for the cell                                          |
+| `onAOProcess` | `(pid:string) => void` | Callback function that gets called whenever a process is is loaded |
+| `width`       | `string`               | Width of the cell                                                  |
+| `height`      | `string`               | Height of the cell                                                 |
+| `className`   | `string`               | Class names for styling                                            |
+| `style`       | `React.CSSProperties`  | Inline styles                                                      |
+| `devMode`     | `boolean`              | Boolean to enable dev mode                                         |
 
-### `setCellCode`
+### `setCellCode(...)`
 
 To update the code in a cell, after it has been rendered.
-It is discouraged to update code by changing the `code` prop directly, since it re-renders the iframe, again this is personal preference.
+It is discouraged to update code by changing the `code` prop directly, since it re-renders the webview, again this is personal preference.
 
 #### Arguments
 
-- `cellId` - Unique id of the cell
-- `code` - Code to set in the cell
-- `devMode` - Boolean to enable dev mode
+| Argument  | Type      | Description                |
+| --------- | --------- | -------------------------- |
+| `cellId`  | `string`  | Unique id of the cell      |
+| `code`    | `string`  | Code to set in the cell    |
+| `devMode` | `boolean` | Boolean to enable dev mode |
 
 
-### ~~`runCell`~~ (deprecated due to security reasons)
+### ~~`runCell(...)`~~ (deprecated due to security reasons)
 
 ~~To run the code in a cell, after it has been rendered (optional, since the cell already has a run button)~~
 
@@ -54,25 +59,15 @@ It is discouraged to update code by changing the `code` prop directly, since it 
 ## Usage
 
 ```javascript
-import { CodeCell, runCell } from '@betteridea/codecell';
+import { CodeCell } from '@betteridea/codecell';
 
 // in your react app
 <CodeCell
   cellId="1" // any unique cell id
   appName="BetterIDEa-Code-Cell" // Your unique app name
   code="print('Portable code cell ftw!')" // initial code (optional)
+  onAOProcess={(pid) => console.log("using process: ",pid)} // print the process id whenever it loads
 />
-```
-
-~~To run code from external sources, you can use the `runCell` function.~~ (deprecated due to security reasons)
-
-```javascript
-import { runCell } from '@betteridea/codecell';
-
-...
-
-// This will run whatever code is typed in the cell with the id provided
-runCell("1");
 ```
 
 To update the cell with a different code snippet, you can use the `setCellCode` function.
@@ -86,6 +81,25 @@ import { setCellCode } from '@betteridea/codecell';
 setCellCode("1", "print('Updated code!')");
 ```
 
+<details>
+<summary>Deprecation Warning</summary>
+
+**runCell() function has been deprecated due to security reasons, since it might be possible anyone can run some mischevious code in your process without you knowing.**
+
+To run code from external sources, you can use the `runCell` function.
+
+```javascript
+import { runCell } from '@betteridea/codecell';
+
+...
+
+// This will run whatever code is typed in the cell with the id provided
+runCell("1");
+```
+
+</details>
+
+
 ## Developing
 
 To start the vite development server, run:
@@ -98,10 +112,10 @@ npm run dev
 
 then make changes to the component and run function and test them in the vite app at [http://localhost:5173](http://localhost:5173)
 
-1. `CodeCell` component -> [./src/components/CodeCell.tsx](https://github.com/betteridea-dev/ide/blob/main/packages/codecell/src/components/codecell.tsx)
+1. `CodeCell` component -> [./src/components/CodeCell.tsx](https://github.com/betteridea-dev/codecell/blob/main/src/components/codecell.tsx)
 
-2. `runCell` function -> [./src/lib/runCell.ts](https://github.com/betteridea-dev/ide/blob/main/packages/codecell/src/lib/runCell.ts)
+2. Library functions -> [./src/lib](https://github.com/betteridea-dev/codecell/tree/main/src/lib)
 
-Both are essentially a wrapper around https://ide.betteridea.dev/codecell page from the main [IDE](https://ide.betteridea.dev) to run the code in any webapp through an iframe.
+3. `/codecell` webview -> [next_app/src/pages/codecell.tsx](https://github.com/betteridea-dev/ide/blob/main/next_app/src/pages/codecell.tsx)
 
-`/codecell` -> [next_app/src/pages/codecell.tsx](https://github.com/betteridea-dev/ide/blob/main/next_app/src/pages/codecell.tsx)
+The package is essentially a wrapper around https://ide.betteridea.dev/codecell route from the main [IDE](https://ide.betteridea.dev) to run code in any webapp through a webview.

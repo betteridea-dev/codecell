@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 
 
 export default function CodeCell({ cellId,
@@ -7,7 +8,8 @@ export default function CodeCell({ cellId,
     width = "100%",
     height = "300px",
     className = "",
-    style = {}
+    style = {},
+    onAOProcess = (pid: string) => { }
 }: {
     cellId: string;
     appName: string;
@@ -17,11 +19,24 @@ export default function CodeCell({ cellId,
     height?: string;
     className?: string;
     style?: React.CSSProperties;
+    onAOProcess?: (pid: string) => void;
 }) {
     const url = new URL(devMode ? "http://localhost:3000/codecell" : "https://ide.betteridea.dev/codecell");
 
     url.searchParams.append("app-name", appName);
     url.searchParams.append("code", code);
+
+    useEffect(() => {
+        const callback = async (e: any) => {
+            if (e.data.action == "set_process") {
+                onAOProcess(e.data.process);
+            }
+        };
+
+        window.removeEventListener("message", callback);
+        window.addEventListener("message", callback);
+        return () => window.removeEventListener("message", callback);
+    }, [])
 
 
     return <iframe
