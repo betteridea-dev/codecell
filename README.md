@@ -77,12 +77,12 @@ import { CodeCell } from '@betteridea/codecell';
 
 // in your react app
 <CodeCell
-  cellId="1" // any unique cell id
-  appName="BetterIDEa-Code-Cell" // Your unique app name
-  code="print('Portable code cell ftw!')" // initial code (optional)
-  onAOProcess={(pid) => console.log("using process: ", pid)} // print the process id whenever it loads
-  onNewMessage={(msgs) => console.log("new messages: ", msgs)} // print new messages
-  onInbox={(inbox) => console.log("got inbox: ", inbox)} // print inbox messages
+  cellId="1" 
+  appName="BetterIDEa-Code-Cell" 
+  code="print('Portable code cell ftw!')" 
+  onAOProcess={(pid)=> console.log("using process: ", pid)}
+  onNewMessage={(msgs) => console.log("new messages: ", msgs)}
+  onInbox={(inbox) => console.log("got inbox: ", inbox)}
 />
 ```
 
