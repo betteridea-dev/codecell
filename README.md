@@ -21,17 +21,31 @@ A react component to render a code cell in your app.
 
 #### Props
 
-| Prop          | Type                   | Description                                                        |
-| ------------- | ---------------------- | ------------------------------------------------------------------ |
-| `cellId`      | `string`               | Unique id for the cell                                             |
-| `appName`     | `string`               | Unique app name                                                    |
-| `code`        | `string`               | Initial code for the cell                                          |
-| `onAOProcess` | `(pid:string) => void` | Callback function that gets called whenever a process is is loaded |
-| `width`       | `string`               | Width of the cell                                                  |
-| `height`      | `string`               | Height of the cell                                                 |
-| `className`   | `string`               | Class names for styling                                            |
-| `style`       | `React.CSSProperties`  | Inline styles                                                      |
-| `devMode`     | `boolean`              | Boolean to enable dev mode                                         |
+| Prop           | Type                     | Description                                                                   |
+| -------------- | ------------------------ | ----------------------------------------------------------------------------- |
+| `cellId`       | `string`                 | Unique id for the cell                                                        |
+| `appName`      | `string`                 | Unique app name                                                               |
+| `code`         | `string`                 | Initial code for the cell                                                     |
+| `onAOProcess`  | `(pid:string) => void`   | Callback function that run whenever a process is is loaded                    |
+| `onNewMessage` | `(msgs: msg[]) => void`  | Callback function, runs whenever process gets new messages                    |
+| `onInbox`      | `(inbox: msg[]) => void` | Callback function, runs whenever Inbox is received after calling `getInbox()` |
+| `width`        | `string`                 | Width of the cell                                                             |
+| `height`       | `string`                 | Height of the cell                                                            |
+| `className`    | `string`                 | Class names for styling                                                       |
+| `style`        | `React.CSSProperties`    | Inline styles                                                                 |
+| `devMode`      | `boolean`                | Boolean to enable dev mode                                                    |
+
+
+### `getInbox(...)`
+
+Fetches latest Inbox messages from the process.
+
+#### Arguments
+
+| Argument  | Type      | Description                |
+| --------- | --------- | -------------------------- |
+| `cellId`  | `string`  | Unique id of the cell      |
+| `devMode` | `boolean` | Boolean to enable dev mode |
 
 ### `setCellCode(...)`
 
@@ -66,19 +80,25 @@ import { CodeCell } from '@betteridea/codecell';
   cellId="1" // any unique cell id
   appName="BetterIDEa-Code-Cell" // Your unique app name
   code="print('Portable code cell ftw!')" // initial code (optional)
-  onAOProcess={(pid) => console.log("using process: ",pid)} // print the process id whenever it loads
+  onAOProcess={(pid) => console.log("using process: ", pid)} // print the process id whenever it loads
+  onNewMessage={(msgs) => console.log("new messages: ", msgs)} // print new messages
+  onInbox={(inbox) => console.log("got inbox: ", inbox)} // print inbox messages
 />
 ```
 
 To update the cell with a different code snippet, you can use the `setCellCode` function.
 
 ```javascript
-import { setCellCode } from '@betteridea/codecell';
+import { setCellCode, getInbox } from '@betteridea/codecell';
 
 ...
 
 // This will update the code in the cell with the id provided
 setCellCode("1", "print('Updated code!')");
+
+// This will fetch the latest inbox messages from the process
+getInbox("1");
+// as soon as the inbox is received, onInbox callback will be called
 ```
 
 <details>
