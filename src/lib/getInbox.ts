@@ -6,6 +6,4 @@ export default function getInbox(cellId: string, devMode = false) {
         const host = devMode ? "*" : "https://ide.betteridea.dev";
         iframe.contentWindow.postMessage({ action: "get_inbox" }, host);
     }
-
-
 }

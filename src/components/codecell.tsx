@@ -7,8 +7,8 @@ async function getResults(process: string, cursor = "") {
     const r = await ao.results({
         process,
         from: cursor,
-        sort: "DESC",
-        limit: 10,
+        sort: "ASC",
+        limit: 999,
     })
 
     if (r.edges.length > 0) {
@@ -77,11 +77,11 @@ export default function CodeCell({ cellId,
         async function fetchNewInboxMsg() {
             const localCursor = sessionStorage.getItem("cursor") || ""
             const r = await getResults(sessionStorage.getItem("cell-ao-id") as string, localCursor)
-            console.log(r.cursor)
-            if (!localCursor) // if ran for first time, dont fetch old stuff
+            if (!localCursor) // if ran for first time, set cursor and return
                 return sessionStorage.setItem("cursor", r.cursor)
 
             if (r.cursor != sessionStorage.getItem("cursor")) {
+                console.log(r.cursor)
                 sessionStorage.setItem("cursor", r.cursor)
                 if (r.results.length > 0) {
                     // console.log(r.results)

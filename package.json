@@ -8,8 +8,8 @@
   "keywords": [
     "arweave",
     "ao",
-    "betteridea",
     "ide",
+    "betteridea",
     "codecell"
   ],
   "private": false,
@@ -40,11 +40,11 @@
     "prepare": "npm run build"
   },
   "dependencies": {
-    "@permaweb/aoconnect": "^0.0.55",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@permaweb/aoconnect": "^0.0.55",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/node": "^20.12.12",
     "@types/react": "^18.2.66",
