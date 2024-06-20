@@ -62,15 +62,6 @@ It is discouraged to update code by changing the `code` prop directly, since it 
 | `devMode` | `boolean` | Boolean to enable dev mode |
 
 
-### ~~`runCell(...)`~~ (deprecated due to security reasons)
-
-~~To run the code in a cell, after it has been rendered (optional, since the cell already has a run button)~~
-
-#### ~~Arguments~~
-
-- ~~`cellId` - Unique id of the cell to run~~
-- ~~`devMode` - Boolean to enable dev mode~~
-
 ## Usage
 
 ```javascript
@@ -107,7 +98,14 @@ getInbox("1");
 
 **runCell() function has been deprecated due to security reasons, since it might be possible anyone can run some mischevious code in your process without you knowing.**
 
-To run code from external sources, you can use the `runCell` function.
+### ~~`runCell(...)`~~ (deprecated due to security reasons)
+
+~~To run the code in a cell, after it has been rendered (optional, since the cell already has a run button)~~
+
+#### ~~Arguments~~
+
+- ~~`cellId` - Unique id of the cell to run~~
+- ~~`devMode` - Boolean to enable dev mode~~
 
 ```javascript
 import { runCell } from '@betteridea/codecell';
