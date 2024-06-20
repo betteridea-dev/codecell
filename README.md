@@ -21,19 +21,20 @@ A react component to render a code cell in your app.
 
 #### Props
 
-| Prop           | Type                     | Description                                                                   |
-| -------------- | ------------------------ | ----------------------------------------------------------------------------- |
-| `cellId`       | `string`                 | Unique id for the cell                                                        |
-| `appName`      | `string`                 | Unique app name                                                               |
-| `code`         | `string`                 | Initial code for the cell                                                     |
-| `onAOProcess`  | `(pid:string) => void`   | Callback function that run whenever a process is is loaded                    |
-| `onNewMessage` | `(msgs: msg[]) => void`  | Callback function, runs whenever process gets new messages                    |
-| `onInbox`      | `(inbox: msg[]) => void` | Callback function, runs whenever Inbox is received after calling `getInbox()` |
-| `width`        | `string`                 | Width of the cell                                                             |
-| `height`       | `string`                 | Height of the cell                                                            |
-| `className`    | `string`                 | Class names for styling                                                       |
-| `style`        | `React.CSSProperties`    | Inline styles                                                                 |
-| `devMode`      | `boolean`                | Boolean to enable dev mode                                                    |
+| Prop           | Type                     | Description                                                                                                                          |
+| -------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `cellId`       | `string`                 | Unique id for the cell                                                                                                               |
+| `appName`      | `string`                 | Unique app name                                                                                                                      |
+| `code`         | `string`                 | Initial code for the cell                                                                                                            |
+| `nowallet`     | `boolean`                | Set this to `true` if you dont want to use a web wallet, and generate a local jwk file (works on mobile) Recommended for playgrounds |
+| `onAOProcess`  | `(pid:string) => void`   | Callback function that run whenever a process is is loaded                                                                           |
+| `onNewMessage` | `(msgs: msg[]) => void`  | Callback function, runs whenever process gets new messages                                                                           |
+| `onInbox`      | `(inbox: msg[]) => void` | Callback function, runs whenever Inbox is received after calling `getInbox()`                                                        |
+| `width`        | `string`                 | Width of the cell                                                                                                                    |
+| `height`       | `string`                 | Height of the cell                                                                                                                   |
+| `className`    | `string`                 | Class names for styling                                                                                                              |
+| `style`        | `React.CSSProperties`    | Inline styles                                                                                                                        |
+| `devMode`      | `boolean`                | Boolean to enable dev mode                                                                                                           |
 
 
 ### `getInbox(...)`
@@ -77,9 +78,9 @@ import { CodeCell } from '@betteridea/codecell';
 
 // in your react app
 <CodeCell
-  cellId="1" 
-  appName="BetterIDEa-Code-Cell" 
-  code="print('Portable code cell ftw!')" 
+  cellId="1"
+  appName="BetterIDEa-Code-Cell"
+  code="print('Portable code cell ftw!')"
   onAOProcess={(pid)=> console.log("using process: ", pid)}
   onNewMessage={(msgs) => console.log("new messages: ", msgs)}
   onInbox={(inbox) => console.log("got inbox: ", inbox)}
