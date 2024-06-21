@@ -41,7 +41,7 @@ export default function CodeCell({ cellId, appName, code = "print('Hello AO!')",
             if (e.data.action == "set_process" && e.data.appname == appName) {
                 console.log('set_process', appName, e.data.process)
                 const ids = JSON.parse(sessionStorage.getItem("cell-ids") || "{}");
-                if(ids[appName]) return;
+                // if(ids[appName]) return;
 
                 if (!e.data.process) return;
                 onAOProcess(e.data.process);
