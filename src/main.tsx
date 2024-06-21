@@ -34,6 +34,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         code="Owner..'   '..ao.id"
         devMode
         // nowallet
+        enableToasts={true}
         onAOProcess={(p) => console.log("got pid from webview", p)}
         onNewMessage={(message) => {
           message.forEach((m) => {
@@ -118,6 +119,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         appName="nw-B"
         cellId="6"
         devMode
+        enableToasts
         code="Owner..'   '..ao.id"
         nowallet
         onAOProcess={(p) => console.log("got pid from webview", p)}

@@ -27,6 +27,7 @@ A react component to render a code cell in your app.
 | `appName`      | `string`                 | Unique app name                                                                                                                      |
 | `code`         | `string`                 | Initial code for the cell                                                                                                            |
 | `nowallet`     | `boolean`                | Set this to `true` if you dont want to use a web wallet, and generate a local jwk file (works on mobile) Recommended for playgrounds |
+| `enableToasts` | `boolean`                | Set this to `true` if you want to enable toast notifications for the cell                                                            |
 | `onAOProcess`  | `(pid:string) => void`   | Callback function that run whenever a process is is loaded                                                                           |
 | `onNewMessage` | `(msgs: msg[]) => void`  | Callback function, runs whenever process gets new messages                                                                           |
 | `onInbox`      | `(inbox: msg[]) => void` | Callback function, runs whenever Inbox is received after calling `getInbox()`                                                        |
