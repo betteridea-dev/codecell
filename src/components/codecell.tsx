@@ -39,10 +39,13 @@ export default function CodeCell({ cellId, appName, code = "print('Hello AO!')",
     useEffect(() => {
         const callback = async (e: any) => {
             if (e.data.action == "set_process" && e.data.appname == appName) {
+                console.log('set_process', appName, e.data.process)
+                const ids = JSON.parse(sessionStorage.getItem("cell-ids") || "{}");
+                if(ids[appName]) return;
+
                 if (!e.data.process) return;
                 onAOProcess(e.data.process);
                 // setMyAoId(e.data.process)
-                const ids = JSON.parse(sessionStorage.getItem("cell-ids") || "{}");
                 ids[appName] = e.data.process;
                 sessionStorage.setItem("cell-ids", JSON.stringify(ids));
             } else if (e.data.action == "inbox") {
