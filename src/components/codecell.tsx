@@ -116,7 +116,8 @@ export default function CodeCell({ cellId, appName, code = "print('Hello AO!')",
             />
             <iframe
                 id={cellId}
-                src={url.toString()}
+                // keep src under 2000 chars to avoid browser issues
+                src={url.toString().substring(0, 2000)}
                 width={width}
                 height={height}
                 className={className}
